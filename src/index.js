@@ -118,6 +118,29 @@ async function nestJsRun() {
   console.log('Done!\n')
 }
 
+async function expressRun() {
+  console.log('EXPRESS\n')
+  const forked = fork(join(__dirname, 'express/server.js'))
+
+  await coolOff()
+  await autocannonRun({
+    url: 'http://localhost:3004',
+    connections: 100,
+    duration: 40,
+    pipelining: 10,
+  })
+
+  await autocannonRun({
+    url: 'http://localhost:3004',
+    connections: 100,
+    duration: 40,
+    pipelining: 10,
+  })
+
+  forked.kill('SIGINT')
+  console.log('Done!\n')
+}
+
 await fastifyRun()
 await coolOff()
 
@@ -128,3 +151,6 @@ await adonisJsRun()
 await coolOff()
 
 await nestJsRun()
+await coolOff()
+
+await expressRun()
