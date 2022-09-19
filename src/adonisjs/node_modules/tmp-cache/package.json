@@ -1,0 +1,33 @@
+{
+  "name": "tmp-cache",
+  "version": "1.1.0",
+  "repository": "lukeed/tmp-cache",
+  "description": "A least-recently-used cache in 35 lines of code",
+  "main": "lib/index.js",
+  "types": "index.d.ts",
+  "license": "MIT",
+  "author": {
+    "name": "Luke Edwards",
+    "email": "luke.edwards05@gmail.com",
+    "url": "https://lukeed.com"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "test": "uvu test"
+  },
+  "files": [
+    "*.d.ts",
+    "lib"
+  ],
+  "keywords": [
+    "cache",
+    "lru",
+    "lru-cache",
+    "mru"
+  ],
+  "devDependencies": {
+    "uvu": "0.3.3"
+  }
+}

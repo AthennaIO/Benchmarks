@@ -27,7 +27,7 @@ function autocannonRun(opts) {
 }
 
 async function athennaRun() {
-  console.log('ATHENNA')
+  console.log('ATHENNA\n')
   const forked = fork(join(__dirname, 'athenna/bootstrap/main.js'))
 
   await coolOff()
@@ -46,30 +46,85 @@ async function athennaRun() {
   })
 
   forked.kill('SIGINT')
-  console.log('Done!')
+  console.log('Done!\n')
 }
 
 async function fastifyRun() {
-  console.log('FASTIFY')
+  console.log('FASTIFY\n')
   const forked = fork(join(__dirname, 'fastify/index.js'))
 
   await coolOff()
   await autocannonRun({
-    url: 'http://localhost:3030',
+    url: 'http://localhost:3001',
     connections: 100,
     duration: 40,
     pipelining: 10,
   })
 
   await autocannonRun({
-    url: 'http://localhost:3030',
+    url: 'http://localhost:3001',
     connections: 100,
     duration: 40,
     pipelining: 10,
   })
 
   forked.kill('SIGINT')
-  console.log('Done!')
+  console.log('Done!\n')
 }
 
-fastifyRun().then(coolOff).then(athennaRun)
+async function adonisJsRun() {
+  console.log('ADONISJS\n')
+  const forked = fork(join(__dirname, 'adonisjs/server.js'))
+
+  await coolOff()
+  await autocannonRun({
+    url: 'http://localhost:3002',
+    connections: 100,
+    duration: 40,
+    pipelining: 10,
+  })
+
+  await autocannonRun({
+    url: 'http://localhost:3002',
+    connections: 100,
+    duration: 40,
+    pipelining: 10,
+  })
+
+  forked.kill('SIGINT')
+  console.log('Done!\n')
+}
+
+async function nestJsRun() {
+  console.log('NESTJS\n')
+  const forked = fork(join(__dirname, 'nestjs/main.js'))
+
+  await coolOff()
+  await autocannonRun({
+    url: 'http://localhost:3003',
+    connections: 100,
+    duration: 40,
+    pipelining: 10,
+  })
+
+  await autocannonRun({
+    url: 'http://localhost:3003',
+    connections: 100,
+    duration: 40,
+    pipelining: 10,
+  })
+
+  forked.kill('SIGINT')
+  console.log('Done!\n')
+}
+
+await fastifyRun()
+await coolOff()
+
+await athennaRun()
+await coolOff()
+
+await adonisJsRun()
+await coolOff()
+
+await nestJsRun()

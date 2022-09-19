@@ -21,4 +21,4 @@ server.get('/', schema, function (req, reply) {
   reply.send({ hello: 'world' })
 })
 
-server.listen({ port: 3030, host: '127.0.0.1' })
+server.listen({ port: 3001, host: '127.0.0.1' })

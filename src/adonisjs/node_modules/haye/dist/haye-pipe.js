@@ -1,0 +1,1 @@
+"use strict";module.exports=function(a,e){e.add();for(var r=a.length,t=0,d="name";t<r;){var n=a[t++],o=n.charCodeAt(0);58===o||44===o?(d="arg",e.shiftValue()):124===o?(d="name",e.add()):"arg"===d?e.appendValue(n):e.appendKey(n,o)}return e.toJSON()};

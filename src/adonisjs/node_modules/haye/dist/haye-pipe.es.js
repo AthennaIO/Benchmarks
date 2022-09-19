@@ -1,0 +1,1 @@
+function a(a,e){e.add();for(var r=a.length,d=0,n="name";d<r;){var t=a[d++],o=t.charCodeAt(0);58===o||44===o?(n="arg",e.shiftValue()):124===o?(n="name",e.add()):"arg"===n?e.appendValue(t):e.appendKey(t,o)}return e.toJSON()}export default a;

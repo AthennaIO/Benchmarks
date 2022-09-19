@@ -10,4 +10,4 @@ import { Route } from '@athenna/http'
 |
 */
 
-Route.get('/', ({ response }) => response.send({ hello: 'world' }))
+Route.get('/', async ({ response }) => response.send({ hello: 'world' }))

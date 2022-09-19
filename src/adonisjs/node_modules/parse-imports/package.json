@@ -1,0 +1,105 @@
+{
+  "name": "parse-imports",
+  "version": "0.0.5",
+  "author": {
+    "name": "Tomer Aberbach",
+    "email": "tomeraberbach@gmail.com",
+    "url": "https://tomeraberba.ch"
+  },
+  "description": "A blazing fast ES module imports parser.",
+  "keywords": [
+    "esm",
+    "imports",
+    "module",
+    "parser",
+    "imports"
+  ],
+  "homepage": "https://github.com/TomerAberbach/parse-imports",
+  "repository": "TomerAberbach/parse-imports",
+  "bugs": {
+    "url": "https://github.com/TomerAberbach/parse-imports/issues"
+  },
+  "license": "Apache 2.0",
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "license": "addlicense $(git diff --name-only HEAD)",
+    "lint:eslint:base": "eslint --cache --ext mjs,cjs,js --ignore-path .gitignore --ignore-pattern \"**/fixtures/**/*\"",
+    "lint:eslint": "pnpm run lint:eslint:base -- --fix .",
+    "lint:prettier:base": "prettier --loglevel silent",
+    "lint:prettier": "pnpm run lint:prettier:base -- --write .",
+    "lint": "run-s lint:*",
+    "test": "ava",
+    "build:base": "babel --delete-dir-on-start -D --no-copy-ignored --keep-file-extension --ignore \"src/**/*.test.js,src/**/fixtures/**/*\"",
+    "build:dev": "pnpm run build:base -- -d dist src",
+    "build:main": "cross-env NODE_ENV=main pnpm run build:base -- -d dist/main src",
+    "build:module": "cross-env NODE_ENV=module pnpm run build:base -- -d dist/module src",
+    "build:prod": "run-p build:main build:module",
+    "clean": "rimraf dist"
+  },
+  "eslintConfig": {
+    "extends": "@tomer"
+  },
+  "prettier": "@tomer/prettier-config",
+  "browserslist": [
+    "node >= 10"
+  ],
+  "commitlint": {
+    "extends": "@commitlint/config-conventional"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "pnpm run test"
+    }
+  },
+  "ava": {
+    "babel": true,
+    "require": [
+      "@babel/register"
+    ],
+    "files": [
+      "**/{*.,}test.js"
+    ]
+  },
+  "dependencies": {
+    "es-module-lexer": "0.3.26",
+    "slashes": "2.0.2"
+  },
+  "devDependencies": {
+    "@ava/babel": "1.0.1",
+    "@babel/cli": "7.12.10",
+    "@babel/core": "7.12.10",
+    "@babel/preset-env": "7.12.11",
+    "@babel/register": "7.12.10",
+    "@commitlint/cli": "11.0.0",
+    "@commitlint/config-conventional": "11.0.0",
+    "@tomer/eslint-config": "0.0.14",
+    "@tomer/prettier-config": "0.0.2",
+    "@types/node": "14.14.19",
+    "ava": "3.15.0",
+    "ava-fast-check": "4.0.0",
+    "babel-eslint": "10.1.0",
+    "babel-plugin-unassert": "3.0.1",
+    "babel-preset-power-assert": "3.0.0",
+    "command-exists": "1.2.9",
+    "cross-env": "7.0.3",
+    "eslint": "7.16.0",
+    "fast-check": "2.10.0",
+    "husky": "4.3.6",
+    "lint-staged": "10.5.3",
+    "npm-run-all": "4.1.5",
+    "power-assert": "1.6.1",
+    "prettier": "2.2.1",
+    "rimraf": "3.0.2",
+    "shift-codegen": "7.0.3",
+    "shift-fuzzer": "1.0.2"
+  },
+  "engines": {
+    "node": ">= 10"
+  }
+}

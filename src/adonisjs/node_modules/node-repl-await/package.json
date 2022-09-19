@@ -1,0 +1,38 @@
+{
+  "name": "node-repl-await",
+  "version": "0.1.2",
+  "description": "Standalone util function from Node.js core to process await statements in REPL.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyurl/node-repl-await.git"
+  },
+  "keywords": [
+    "repl",
+    "await",
+    "async",
+    "shell",
+    "console",
+    "terminal"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nodejs/node/issues"
+  },
+  "homepage": "https://nodejs.org",
+  "dependencies": {
+    "acorn": "^8.0.5",
+    "acorn-class-fields": "^1.0.0",
+    "acorn-private-methods": "^1.0.0",
+    "acorn-static-class-features": "^1.0.0",
+    "acorn-walk": "^8.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^11.15.2",
+    "mocha": "^6.2.2"
+  }
+}

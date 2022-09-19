@@ -1,0 +1,47 @@
+{
+  "name": "@poppinss/matchit",
+  "version": "3.1.2",
+  "description": "Quickly parse & match URLs",
+  "main": "lib/matchit.js",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "bundt",
+    "bench": "node bench",
+    "pretest": "npm run build",
+    "prebench": "npm run build",
+    "test": "tape test/*.js | tap-spec"
+  },
+  "keywords": [
+    "route",
+    "regexp",
+    "routing",
+    "pattern",
+    "match",
+    "parse",
+    "url"
+  ],
+  "dependencies": {
+    "@arr/every": "^1.0.0"
+  },
+  "devDependencies": {
+    "bundt": "^1.1.2",
+    "tap-spec": "^5.0.0",
+    "tape": "^5.2.2"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poppinss/matchit.git"
+  },
+  "author": "virk,poppinss",
+  "bugs": {
+    "url": "https://github.com/poppinss/matchit/issues"
+  },
+  "homepage": "https://github.com/poppinss/matchit#readme"
+}

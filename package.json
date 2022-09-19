@@ -31,83 +31,18 @@
     "commitizen": "4.2.5",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "8.14.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-config-standard": "17.0.0",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-n": "15.2.0",
-    "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-promise": "6.0.0",
     "husky": "3.0.9",
-    "lint-staged": "12.4.1",
     "minimist": "1.2.6",
-    "prettier": "2.6.2",
     "rimraf": "3.0.2"
   },
   "husky": {
     "hooks": {
-      "prepare-commit-msg": "lint-staged && exec < /dev/tty && git cz --hook || true"
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ]
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "all",
-    "arrowParens": "avoid",
-    "endOfLine": "lf",
-    "semi": false,
-    "printWidth": 80,
-    "overrides": [
-      {
-        "files": "tests/**/*",
-        "options": {
-          "printWidth": 120
-        }
-      }
-    ]
-  },
-  "eslintConfig": {
-    "globals": {
-      "Env": true
-    },
-    "env": {
-      "es2021": true,
-      "node": true
-    },
-    "plugins": [
-      "prettier"
-    ],
-    "extends": [
-      "standard",
-      "eslint:recommended",
-      "plugin:prettier/recommended"
-    ],
-    "ignorePatterns": [
-      "**/*.d.ts"
-    ],
-    "parserOptions": {
-      "ecmaVersion": "latest",
-      "sourceType": "module"
-    },
-    "rules": {
-      "camelcase": "off",
-      "dot-notation": "off",
-      "prettier/prettier": "error",
-      "no-useless-constructor": "off"
     }
   }
 }
