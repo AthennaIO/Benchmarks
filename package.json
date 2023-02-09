@@ -18,7 +18,7 @@
   "type": "module",
   "dependencies": {
     "@athenna/artisan": "1.5.0",
-    "@athenna/config": "1.1.4",
+    "@athenna/config": "1.2.2",
     "@athenna/core": "1.9.2",
     "@athenna/http": "1.6.8",
     "@athenna/ioc": "1.2.4",
