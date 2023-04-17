@@ -1,0 +1,43 @@
+{
+  "name": "@poppinss/co-body",
+  "version": "1.2.0",
+  "repository": "thetutlage/co-body",
+  "description": "Request body parser used by AdonisJS. Forked from co-body",
+  "keywords": [
+    "request",
+    "parse",
+    "parser",
+    "json",
+    "co",
+    "generators",
+    "urlencoded"
+  ],
+  "dependencies": {
+    "@poppinss/utils": "^5.0.0",
+    "inflation": "^2.0.0",
+    "qs": "^6.11.0",
+    "raw-body": "^2.5.1",
+    "type-is": "^1.6.18"
+  },
+  "devDependencies": {
+    "autod": "^3.1.2",
+    "egg-bin": "^4.20.0",
+    "eslint": "^7.32.0",
+    "eslint-config-egg": "^9.0.0",
+    "koa": "^2.13.4",
+    "safe-qs": "^6.0.1",
+    "should": "^13.2.3",
+    "supertest": "^6.2.4"
+  },
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "autod": "autod",
+    "test": "egg-bin test -r should",
+    "cov": "eslint . && egg-bin cov -r should"
+  },
+  "files": [
+    "index.js",
+    "lib/"
+  ]
+}

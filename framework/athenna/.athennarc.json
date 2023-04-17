@@ -1,0 +1,6 @@
+{
+  "providers": [
+    "@athenna/http/providers/HttpRouteProvider",
+    "@athenna/http/providers/HttpServerProvider"
+  ]
+}

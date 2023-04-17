@@ -1,5 +1,5 @@
 
-node_modules
+node_modules/
 
 # Logs
 logs
@@ -114,8 +114,19 @@ out
 .yarn/install-state.gz
 .pnp.*
 
+# Compiled code
+./dist
+./build
+*.js
+*.d.ts
+*.js.map
+!tests/Stubs/**/*.js
+!tests/Stubs/**/*.d.ts
+!tests/Stubs/**/*.js.map
+
 # IDE
 .idea
+.fleet
 .vscode
 
 # Environment variables file
@@ -125,3 +136,10 @@ out
 
 # MacOS folder mapper file
 .DS_Store
+
+# Frameworks code
+!framework/adonisjs/**/*
+!framework/athenna/**/*
+!framework/nestjs/**/*
+!framework/fastify/**/*
+!framework/express/**/*

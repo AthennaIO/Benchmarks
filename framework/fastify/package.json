@@ -1,0 +1,12 @@
+{
+  "name": "fastify",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "fastify": "^4.15.0"
+  }
+}

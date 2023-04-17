@@ -1,0 +1,16 @@
+{
+  "typescript": false,
+  "exceptionHandlerNamespace": "App/Exceptions/Handler",
+  "aliases": {
+    "App": "app",
+    "Config": "config"
+  },
+  "preloads": [
+    "./start/routes",
+    "./start/kernel"
+  ],
+  "providers": [
+    "@adonisjs/core"
+  ],
+  "lastCompiledAt": "2023-04-16T22:11:28.958Z"
+}
