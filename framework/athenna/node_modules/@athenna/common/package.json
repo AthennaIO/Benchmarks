@@ -1,6 +1,6 @@
 {
   "name": "@athenna/common",
-  "version": "3.5.1",
+  "version": "3.6.0",
   "description": "The Athenna common helpers to use in any Node.js ESM project.",
   "license": "MIT",
   "author": "João Lenon <lenon@athenna.io>",
@@ -51,7 +51,7 @@
     "change-case": "^4.1.2",
     "collect.js": "^4.34.3",
     "debug": "^4.3.4",
-    "fastify": "^4.14.1",
+    "fastify": "^4.15.0",
     "got": "^12.6.0",
     "http-status-codes": "^2.2.0",
     "is-wsl": "^2.2.0",

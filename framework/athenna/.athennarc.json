@@ -2,5 +2,27 @@
   "providers": [
     "@athenna/http/providers/HttpRouteProvider",
     "@athenna/http/providers/HttpServerProvider"
-  ]
+  ],
+  "directories": {
+    "bootstrap": "bin",
+    "config": "src/config",
+    "routes": "src/routes",
+    "exceptions": "src/exceptions",
+    "providers": "src/providers",
+    "facades": "src/providers/facades",
+    "services": "src/services",
+    "commands": "src/commands",
+    "controllers": "src/controllers",
+    "middlewares": "src/middlewares",
+    "interceptors": "src/interceptors",
+    "terminators": "src/terminators",
+    "repositories": "src/repositories",
+    "tests": "tests",
+    "resources": "src/resources",
+    "views": "src/resources/views",
+    "locales": "src/resources/locales",
+    "database": "src/database",
+    "seeders": "src/database/seeders",
+    "migrations": "src/database/migrations"
+  }
 }

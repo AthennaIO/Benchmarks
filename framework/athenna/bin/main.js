@@ -6,5 +6,4 @@ const ignite = await new Ignite().load(import.meta.url, {
 await ignite.httpServer({
   port: 3000,
   host: 'localhost',
-  routePath: '#src/routes/http.route',
 })
