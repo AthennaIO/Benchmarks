@@ -50,6 +50,12 @@ Type: `string | () => string`
 
 Text or a function that returns text to display before the spinner. No prefix text will be displayed if set to an empty string.
 
+##### suffixText
+
+Type: `string | () => string`
+
+Text or a function that returns text to display after the spinner text. No suffix text will be displayed if set to an empty string.
+
 ##### spinner
 
 Type: `string | object`\
@@ -142,6 +148,12 @@ Change the text before the spinner.
 
 No prefix text will be displayed if set to an empty string.
 
+#### .suffixText <sup>get/set</sup>
+
+Change the text after the spinner text.
+
+No suffix text will be displayed if set to an empty string.
+
 #### .color <sup>get/set</sup>
 
 Change the spinner color.
@@ -208,7 +220,7 @@ Symbol to replace the spinner with.
 Type: `string`\
 Default: Current `'text'`
 
-Text to be persisted after the symbol
+Text to be persisted after the symbol.
 
 ###### prefixText
 
@@ -216,6 +228,13 @@ Type: `string`\
 Default: Current `prefixText`
 
 Text to be persisted before the symbol. No prefix text will be displayed if set to an empty string.
+
+###### suffixText
+
+Type: `string`\
+Default: Current `suffixText`
+
+Text to be persisted after the text after the symbol. No suffix text will be displayed if set to an empty string.
 
 <img src="screenshot-2.gif" width="480">
 

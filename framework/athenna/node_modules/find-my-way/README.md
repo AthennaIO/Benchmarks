@@ -10,7 +10,7 @@ Do you need a real-world example that uses this router? Check out [Fastify](http
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
-  - [FindMyWay([options])](#find-my-way)
+  - [FindMyWay([options])](#findmywayoptions)
   - [on(method, path, [opts], handler, [store])](#onmethod-path-opts-handler-store)
     - [Versioned routes](#versioned-routes)
       - [default](#default)
@@ -730,7 +730,10 @@ const customVersioning = {
   deriveConstraint: (req, ctx) => {
     return req.headers['accept']
   },
-  mustMatchWhenDerived: true // if the request is asking for a version, don't match un-version-constrained handlers
+  mustMatchWhenDerived: true, // if the request is asking for a version, don't match un-version-constrained handlers
+  validate (value) {  // optional validate function, validates the assigned value at route-configuration (the .on function) time (not the runtime-value)
+    assert(typeof value === 'string', 'Version should be a string')
+  }
 }
 
 const router = FindMyWay({ constraints: { version: customVersioning } });
