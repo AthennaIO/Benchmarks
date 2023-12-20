@@ -33,7 +33,6 @@
     "@athenna/ioc": "^4.10.0",
     "@athenna/logger": "^4.11.0",
     "@athenna/view": "^4.8.0",
-    "cross-env": "^7.0.3",
     "reflect-metadata": "^0.1.13"
   }
 }
