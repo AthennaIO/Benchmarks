@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "lint:fix": "eslint \"{bin,framework,src}/**/*.ts\" --fix",
-    "benchmark": "sh node bin/main.ts"
+    "benchmark": "node --no-warnings --import=@athenna/tsconfig --experimental-import-meta-resolve bin/main.ts"
   },
   "type": "module",
   "imports": {
@@ -25,8 +25,10 @@
     "#framework": "./framework/index.js"
   },
   "dependencies": {
-    "autocannon": "^7.12.0",
+    "@athenna/tsconfig": "^4.12.0",
+    "autocannon": "^7.14.0",
     "chalk": "^5.3.0",
+    "husky": "^8.0.3",
     "ora": "^7.0.1"
   },
   "devDependencies": {
