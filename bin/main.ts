@@ -27,12 +27,12 @@ if (!values.framework) {
   await Benchmark.express()
   await Benchmark.fastify()
   await Benchmark.nestjs()
-}
+} else {
+  if (values.framework.length === 1 && values.framework.includes(',')) {
+    values.framework = values.framework[0].split(',')
+  }
 
-if (values.framework.length === 1 && values.framework.includes(',')) {
-  values.framework = values.framework[0].split(',')
-}
-
-for (const framework of values.framework) {
-  await Benchmark[framework]()
+  for (const framework of values.framework) {
+    await Benchmark[framework]()
+  }
 }

@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "lint:fix": "eslint \"{bin,framework,src}/**/*.ts\" --fix",
-    "benchmark": "node --no-warnings --import=@athenna/tsconfig --experimental-import-meta-resolve bin/main.ts",
+    "benchmark": "node --no-warnings --loaders=ts-node/esm --experimental-import-meta-resolve bin/main.ts",
     "benchmark:athenna": "node --no-warnings --loader=ts-node/esm --experimental-import-meta-resolve bin/main.ts --framework=athenna",
     "benchmark:fastify": "node --no-warnings --loader=ts-node/esm --experimental-import-meta-resolve bin/main.ts --framework=fastify"
   },
