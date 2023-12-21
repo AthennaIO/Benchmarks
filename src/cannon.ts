@@ -22,10 +22,10 @@ export default class Cannon {
             url,
             connections: 100,
             duration: 40,
-            pipelining: 10,
+            pipelining: 10
           },
-          resolve,
-        ),
+          resolve
+        )
       )
     })
   }
