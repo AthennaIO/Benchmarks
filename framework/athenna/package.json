@@ -13,7 +13,7 @@
     "typescript"
   ],
   "scripts": {
-    "start": "node --experimental-import-meta-resolve bin/main.js"
+    "start": "node --no-warnings --experimental-import-meta-resolve bin/main.js"
   },
   "type": "module",
   "imports": {
@@ -25,15 +25,14 @@
     "#tests": "./tests/index.js"
   },
   "dependencies": {
-    "@athenna/artisan": "^4.2.0",
-    "@athenna/common": "^4.4.0",
-    "@athenna/config": "^4.3.0",
-    "@athenna/core": "^4.2.0",
-    "@athenna/http": "^4.4.0",
-    "@athenna/ioc": "^4.1.0",
-    "@athenna/logger": "^4.2.0",
-    "@athenna/view": "^4.1.0",
-    "cross-env": "^7.0.3",
+    "@athenna/artisan": "^4.21.0",
+    "@athenna/common": "^4.24.0",
+    "@athenna/config": "^4.10.0",
+    "@athenna/core": "^4.16.0",
+    "@athenna/http": "^4.15.0",
+    "@athenna/ioc": "^4.11.0",
+    "@athenna/logger": "^4.12.0",
+    "@athenna/view": "^4.9.0",
     "reflect-metadata": "^0.1.13"
   }
 }

@@ -13,7 +13,9 @@
   ],
   "scripts": {
     "lint:fix": "eslint \"{bin,framework,src}/**/*.ts\" --fix",
-    "benchmark": "sh node bin/main.ts"
+    "benchmark": "node --no-warnings --loader=ts-node/esm --experimental-import-meta-resolve bin/main.ts",
+    "benchmark:athenna": "node --no-warnings --loader=ts-node/esm --experimental-import-meta-resolve bin/main.ts --framework=athenna",
+    "benchmark:fastify": "node --no-warnings --loader=ts-node/esm --experimental-import-meta-resolve bin/main.ts --framework=fastify"
   },
   "type": "module",
   "imports": {
@@ -25,14 +27,12 @@
     "#framework": "./framework/index.js"
   },
   "dependencies": {
-    "autocannon": "^7.12.0",
-    "chalk": "^5.3.0",
-    "ora": "^7.0.1"
-  },
-  "devDependencies": {
+    "@athenna/tsconfig": "^4.12.0",
     "@types/autocannon": "^7.9.0",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "autocannon": "^7.14.0",
+    "chalk": "^5.3.0",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard": "^17.0.0",
@@ -40,18 +40,26 @@
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.3",
+    "ora": "^7.0.1",
     "prettier": "^2.8.7",
-    "reflect-metadata": "^0.1.13",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.2"
+    "reflect-metadata": "^0.1.13"
   },
   "prettier": {
     "singleQuote": true,
-    "trailingComma": "all",
+    "trailingComma": "none",
     "arrowParens": "avoid",
     "endOfLine": "lf",
     "semi": false,
-    "printWidth": 80
+    "printWidth": 80,
+    "overrides": [
+      {
+        "files": "tests/**/*",
+        "options": {
+          "printWidth": 120
+        }
+      }
+    ]
   },
   "eslintIgnore": [],
   "eslintConfig": {
@@ -72,13 +80,10 @@
     ],
     "parser": "@typescript-eslint/parser",
     "rules": {
-      "no-void": "off",
       "camelcase": "off",
-      "no-sequences": "off",
       "dot-notation": "off",
       "prettier/prettier": "error",
       "no-useless-constructor": "off",
-      "@typescript-eslint/no-var-requires": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-empty-function": "off",
       "@typescript-eslint/no-unused-vars": [

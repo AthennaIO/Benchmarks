@@ -23,7 +23,7 @@ export default class Logger {
   public static async spinner(promise: any, text: string) {
     await oraPromise(promise, {
       text,
-      spinner: 'bouncingBar',
+      spinner: 'bouncingBar'
     })
   }
 }

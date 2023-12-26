@@ -1,12 +1,13 @@
 'use strict';
 
 var Stream = require('stream').Stream;
+var callBind = require('call-bind');
 
 // create a readable writable stream.
 
 function through(write, end, opts) {
-	write = write || function (data) { this.queue(data); };
-	end = end || function () { this.queue(null); };
+	var writeBound = callBind(write || function (data) { this.queue(data); });
+	var endBound = callBind(end || function () { this.queue(null); });
 
 	var ended = false;
 	var destroyed = false;
@@ -21,7 +22,7 @@ function through(write, end, opts) {
 	stream.autoDestroy = !(opts && opts.autoDestroy === false);
 
 	stream.write = function (data) {
-		write.call(this, data);
+		writeBound(this, data);
 		return !stream.paused;
 	};
 
@@ -62,7 +63,7 @@ function through(write, end, opts) {
 
 	function _end() {
 		stream.writable = false;
-		end.call(stream);
+		endBound(stream);
 		if (!stream.readable && stream.autoDestroy) { stream.destroy(); }
 	}
 

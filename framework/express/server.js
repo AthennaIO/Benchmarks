@@ -2,7 +2,7 @@ import express from 'express'
 
 const server = express()
 
-server.get('/', async (request, response) => {
+server.get('/', async (_, response) => {
   return response.status(200).send({ status: 'ok' })
 })
 
