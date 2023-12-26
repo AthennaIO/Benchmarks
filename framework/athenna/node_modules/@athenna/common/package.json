@@ -1,6 +1,6 @@
 {
   "name": "@athenna/common",
-  "version": "4.23.0",
+  "version": "4.25.0",
   "description": "The Athenna common helpers to use in any Node.js ESM project.",
   "license": "MIT",
   "author": "João Lenon <lenon@athenna.io>",
@@ -80,7 +80,7 @@
     "youch-terminal": "^2.2.2"
   },
   "devDependencies": {
-    "@athenna/test": "^4.11.0",
+    "@athenna/test": "^4.16.0",
     "@athenna/tsconfig": "^4.12.0",
     "@types/bytes": "^3.1.1",
     "@types/callsite": "^1.0.31",
