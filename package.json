@@ -43,7 +43,7 @@
     "husky": "^8.0.3",
     "ora": "^7.0.1",
     "prettier": "^2.8.7",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.2.0"
   },
   "prettier": {
     "singleQuote": true,
