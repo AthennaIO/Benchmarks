@@ -10,8 +10,10 @@ Config.set('http', {
   host: 'localhost',
   cors: { enabled: false },
   logger: { enabled: false },
-  rTracer: { enabled: false },
+  helmet: { enabled: false },
+  static: { enabled: false },
   swagger: { enabled: false },
+  rTracer: { enabled: false },
   rateLimit: { enabled: false }
 })
 await ignite.httpServer()

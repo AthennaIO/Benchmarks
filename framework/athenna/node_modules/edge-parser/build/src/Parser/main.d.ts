@@ -1,0 +1,75 @@
+import type { Token } from 'edge-lexer/types';
+import { Stack } from '../stack/index.js';
+import { stringify } from './stringify.js';
+import { generateAST } from './generate_ast.js';
+import { transformAst } from './transform_ast.js';
+import { EdgeBuffer } from '../edge_buffer/index.js';
+import { makeCallable } from './expression_builder/callable.js';
+import { makeMemberAccessor } from './expression_builder/member.js';
+import type { ParserTagDefinitionContract, ParserOptions } from '../types.js';
+import { collectObjectExpressionProperties, collectArrayExpressionProperties } from './collect_object_expression_properties.js';
+/**
+ * Edge parser converts template strings to an invokable function. This module
+ * uses [edge-lexer](https://github.com/edge-js/lexer) to generate a list
+ * of tokens and process them against [acorn](https://npm.im/acorn).
+ *
+ * Edge has concepts of Tags, which are not implemented by this module and must
+ * be provided by the consumer.
+ *
+ * ```js
+ * // Tags are optional
+ * const tags = {}
+ *
+ * // File name is required for better error reporting
+ * const options = { filename: 'welcome.edge' }
+ *
+ * const parser = new Parser(tags, options)
+ * const template = require('fs').readFileSync('welcome.edge', 'utf-8')
+ *
+ * const tokens = parser.parse(template)
+ * console.log(fn)
+ * ```
+ */
+export declare class Parser {
+    #private;
+    tags: {
+        [key: string]: ParserTagDefinitionContract;
+    };
+    stack: Stack;
+    options: ParserOptions;
+    /**
+     * A boolean to know if async mode is enabled
+     */
+    asyncMode: boolean;
+    constructor(tags: {
+        [key: string]: ParserTagDefinitionContract;
+    }, stack: Stack, options: ParserOptions);
+    /**
+     * Parser utilities work with the AST
+     */
+    utils: {
+        stringify: typeof stringify;
+        transformAst: typeof transformAst;
+        makeCallable: typeof makeCallable;
+        makeMemberAccessor: typeof makeMemberAccessor;
+        generateAST: typeof generateAST;
+        makeEscapeCallable: typeof makeCallable;
+        makeStatePropertyAccessor: typeof makeMemberAccessor;
+        collectObjectExpressionProperties: typeof collectObjectExpressionProperties;
+        collectArrayExpressionProperties: typeof collectArrayExpressionProperties;
+        getExpressionLoc(expression: any): {
+            line: number;
+            col: number;
+        };
+    };
+    /**
+     * Convert template to tokens
+     */
+    tokenize(template: string, options: {
+        filename: string;
+    }): Token[];
+    /**
+     * Process a lexer token. The output gets written to the buffer
+     */
+    processToken(token: Token, buffer: EdgeBuffer): void;
+}

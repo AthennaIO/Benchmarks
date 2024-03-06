@@ -1,0 +1,80 @@
+import type { TagToken } from 'edge-lexer/types';
+import { expressions as expressionsList, Parser } from 'edge-parser';
+type ExpressionList = readonly (keyof typeof expressionsList | 'ObjectPattern' | 'ArrayPattern')[];
+/**
+ * Raise an `E_UNALLOWED_EXPRESSION` exception. Filename and expression is
+ * required to point the error stack to the correct file
+ */
+export declare function unallowedExpression(message: string, filename: string, loc: {
+    line: number;
+    col: number;
+}): void;
+/**
+ * Validates the expression type to be part of the allowed
+ * expressions only.
+ *
+ * The filename is required to report errors.
+ *
+ * ```js
+ * isNotSubsetOf(expression, ['Literal', 'Identifier'], () => {})
+ * ```
+ */
+export declare function isSubsetOf(expression: any, expressions: ExpressionList, errorCallback: () => void): void;
+/**
+ * Validates the expression type not to be part of the disallowed
+ * expressions.
+ *
+ * The filename is required to report errors.
+ *
+ * ```js
+ * isNotSubsetOf(expression, 'SequenceExpression', () => {})
+ * ```
+ */
+export declare function isNotSubsetOf(expression: any, expressions: ExpressionList, errorCallback: () => void): void;
+/**
+ * Parses the jsArg by generating and transforming its AST
+ */
+export declare function parseJsArg(parser: Parser, token: TagToken): any;
+/**
+ * Each loop. A soft replacement for `lodash.each` that we were using earlier
+ */
+export declare function each(collection: any, iteratee: (value: any, key: any) => void): void;
+/**
+ * Async each loop. A soft replacement for `lodash.each` that we were
+ * using earlier with support for async await
+ */
+export declare function asyncEach(collection: any, iteratee: (value: any, key: any) => Promise<void>): Promise<void>;
+/**
+ * This class generates a valid object as a string, which is written to the template
+ * output. The reason we need a string like object, since we don't want it's
+ * properties to be evaluated during the object creation, instead it must
+ * be evaluated when the compiled output is invoked.
+ */
+export declare class StringifiedObject {
+    #private;
+    addSpread(key: string): void;
+    /**
+     * Add key/value pair to the object.
+     *
+     * ```js
+     * stringifiedObject.add('username', `'virk'`)
+     * ```
+     */
+    add(key: any, value: any, isComputed?: boolean): void;
+    /**
+     * Returns the object alike string back.
+     *
+     * ```js
+     * stringifiedObject.flush()
+     *
+     * // returns
+     * `{ username: 'virk' }`
+     * ```
+     */
+    flush(): string;
+}
+/**
+ * Stringify an object to props to HTML attributes
+ */
+export declare function stringifyAttributes(props: any, namespace?: string): string;
+export {};

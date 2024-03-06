@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.3.12](https://github.com/ljharb/through/compare/v2.3.11...v2.3.12) - 2024-01-24
+
+### Commits
+
+- [patch] add TS types [`0b68b9d`](https://github.com/ljharb/through/commit/0b68b9dc1655edbf5dc81cccdb3ef23dcd8e4bbd)
+- [readme] correct requires; remove redundant license section [`90ff780`](https://github.com/ljharb/through/commit/90ff780f9c3f2c2fb345b33c87e0be080dbf7950)
+- [Dev Deps] update `aud`, `npmignore`, `tape` [`f4456ce`](https://github.com/ljharb/through/commit/f4456ceaf2b216858e7652c9eef8d96badbad678)
+- [Deps] update `call-bind` [`c1b7daa`](https://github.com/ljharb/through/commit/c1b7daaf9ea8138d90caf7cfe7250a09760034c2)
+- [Dev Deps] update `tape` [`74a75ac`](https://github.com/ljharb/through/commit/74a75acadcca26c71ec15f0f0d48e3a9265cebf3)
+- [meta] add `sideEffects` flag [`dcfef36`](https://github.com/ljharb/through/commit/dcfef3615e7df63219aa6184469f4b2a1e61cb0b)
+
 ## [v2.3.11](https://github.com/ljharb/through/compare/v2.3.10...v2.3.11) - 2023-10-11
 
 ### Commits

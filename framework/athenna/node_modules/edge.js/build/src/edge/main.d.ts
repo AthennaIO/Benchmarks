@@ -1,0 +1,186 @@
+/// <reference types="node" resolution-mode="require"/>
+import { Compiler } from '../compiler.js';
+import { Processor } from '../processor.js';
+import { EdgeRenderer } from './renderer.js';
+import type { PluginFn, TagContract, EdgeGlobals, EdgeOptions, LoaderTemplate, LoaderContract } from '../types.js';
+/**
+ * Exposes the API to render templates, register custom tags and globals
+ */
+export declare class Edge {
+    #private;
+    /**
+     * Create an instance of edge with given options
+     */
+    static create(options?: EdgeOptions): Edge;
+    /**
+     * Reference to the registered processor handlers
+     */
+    processor: Processor;
+    /**
+     * A flag to know if using compat mode
+     */
+    compat: boolean;
+    /**
+     * The loader to load templates. A loader can read and return
+     * templates from anywhere. The default loader reads files
+     * from the disk
+     */
+    loader: LoaderContract;
+    /**
+     * The underlying compiler in use
+     */
+    compiler: Compiler;
+    /**
+     * The underlying compiler in use
+     */
+    asyncCompiler: Compiler;
+    /**
+     * Globals are shared with all rendered templates
+     */
+    globals: EdgeGlobals;
+    /**
+     * List of registered tags. Adding new tags will only impact
+     * this list
+     */
+    tags: {
+        [name: string]: TagContract;
+    };
+    constructor(options?: EdgeOptions);
+    /**
+     * Re-configure an existing edge instance
+     */
+    configure(options: EdgeOptions): void;
+    /**
+     * Register a plugin. Plugins are called only once just before
+     * a rendering a view.
+     *
+     * You can invoke a plugin multiple times by marking it as a
+     * recurring plugin
+     */
+    use<T extends any>(pluginFn: PluginFn<T>, options?: T): this;
+    /**
+     * Mount named directory to use views. Later you can reference
+     * the views from a named disk as follows.
+     *
+     * ```
+     * edge.mount('admin', join(__dirname, 'admin'))
+     *
+     * edge.render('admin::filename')
+     * ```
+     */
+    mount(viewsDirectory: string | URL): this;
+    mount(diskName: string, viewsDirectory: string | URL): this;
+    /**
+     * Un Mount a disk from the loader.
+     *
+     * ```js
+     * edge.unmount('admin')
+     * ```
+     */
+    unmount(diskName: string): this;
+    /**
+     * Add a new global to the edge globals. The globals are available
+     * to all the templates.
+     *
+     * ```js
+     * edge.global('username', 'virk')
+     * edge.global('time', () => new Date().getTime())
+     * ```
+     */
+    global(name: string, value: any): this;
+    /**
+     * Add a new tag to the tags list.
+     *
+     * ```ts
+     * edge.registerTag('svg', {
+     *   block: false,
+     *   seekable: true,
+     *
+     *   compile (parser, buffer, token) {
+     *     const fileName = token.properties.jsArg.trim()
+     *     buffer.writeRaw(fs.readFileSync(__dirname, 'assets', `${fileName}.svg`), 'utf-8')
+     *   }
+     * })
+     * ```
+     */
+    registerTag(tag: TagContract): this;
+    /**
+     * Register an in-memory template.
+     *
+     * ```ts
+     * edge.registerTemplate('button', {
+     *   template: `<button class="{{ this.type || 'primary' }}">
+     *     @!yield($slots.main())
+     *   </button>`,
+     * })
+     * ```
+     *
+     * Later you can use this template
+     *
+     * ```edge
+     * @component('button', type = 'primary')
+     *   Get started
+     * @endcomponent
+     * ```
+     */
+    registerTemplate(templatePath: string, contents: LoaderTemplate): this;
+    /**
+     * Remove the template registered using the "registerTemplate" method
+     */
+    removeTemplate(templatePath: string): this;
+    /**
+     * Get access to the underlying template renderer. Each render call
+     * to edge results in creating an isolated renderer instance.
+     */
+    onRender(callback: (renderer: EdgeRenderer) => void): this;
+    /**
+     * Returns a new instance of edge. The instance
+     * can be used to define locals.
+     */
+    createRenderer(): EdgeRenderer;
+    /**
+     * Render a template with optional state
+     *
+     * ```ts
+     * edge.render('welcome', { greeting: 'Hello world' })
+     * ```
+     */
+    render(templatePath: string, state?: Record<string, any>): Promise<string>;
+    /**
+     * Render a template asynchronously with optional state
+     *
+     * ```ts
+     * edge.render('welcome', { greeting: 'Hello world' })
+     * ```
+     */
+    renderSync(templatePath: string, state?: Record<string, any>): string;
+    /**
+     * Render a template with optional state
+     *
+     * ```ts
+     * edge.render('welcome', { greeting: 'Hello world' })
+     * ```
+     */
+    renderRaw(contents: string, state?: Record<string, any>, templatePath?: string): Promise<string>;
+    /**
+     * Render a template asynchronously with optional state
+     *
+     * ```ts
+     * edge.render('welcome', { greeting: 'Hello world' })
+     * ```
+     */
+    renderRawSync(templatePath: string, state?: Record<string, any>): string;
+    /**
+     * Share locals with the current view context.
+     *
+     * ```js
+     * const view = edge.createRenderer()
+     *
+     * // local state for the current render
+     * view.share({ foo: 'bar' })
+     *
+     * view.render('welcome')
+     * ```
+     */
+    share(data: Record<string, any>): EdgeRenderer;
+}

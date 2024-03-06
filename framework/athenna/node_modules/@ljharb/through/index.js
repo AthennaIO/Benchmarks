@@ -3,17 +3,21 @@
 var Stream = require('stream').Stream;
 var callBind = require('call-bind');
 
+/** @typedef {import('./through').ThroughStream} ThroughStream */
+
 // create a readable writable stream.
 
+/** @type {import('./through')} */
 function through(write, end, opts) {
 	var writeBound = callBind(write || function (data) { this.queue(data); });
 	var endBound = callBind(end || function () { this.queue(null); });
 
 	var ended = false;
 	var destroyed = false;
-	var buffer = [];
+	/** @type {unknown[]} */ var buffer = [];
 	var _ended = false;
-	var stream = new Stream();
+	// @ts-expect-error
+	/** @type {ThroughStream} */ var stream = new Stream();
 	stream.readable = true;
 	stream.writable = true;
 	stream.paused = false;

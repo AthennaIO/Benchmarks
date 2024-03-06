@@ -1,0 +1,107 @@
+import Macroable from '@poppinss/macroable';
+import { Compiler } from './compiler.js';
+import { Processor } from './processor.js';
+import { Props } from './migrate/props.js';
+import type { CompiledTemplate } from './types.js';
+import { ComponentProps } from './component/props.js';
+/**
+ * An instance of this class passed to the escape
+ * method ensures that underlying value is never
+ * escaped.
+ */
+declare class SafeValue {
+    value: any;
+    constructor(value: any);
+}
+/**
+ * Escapes a given string
+ */
+export declare function escape(input: any): string;
+/**
+ * Mark value as safe and not to be escaped
+ */
+export declare function htmlSafe(value: string): SafeValue;
+/**
+ * The template is used to compile and run templates. Also the instance
+ * of template is passed during runtime to render `dynamic partials`
+ * and `dynamic components`.
+ */
+export declare class Template extends Macroable {
+    #private;
+    constructor(compiler: Compiler, globals: any, locals: any, processor: Processor);
+    /**
+     * Render a partial
+     *
+     * ```js
+     * const partialFn = template.compilePartial('includes/user')
+     *
+     * // render and use output
+     * partialFn(template, state, ctx)
+     * ```
+     */
+    compilePartial(templatePath: string, ...localVariables: string[]): CompiledTemplate;
+    /**
+     * Render a component
+     *
+     * ```js
+     * const componentFn = template.compileComponent('components/button')
+     *
+     * // render and use output
+     * componentFn(template, template.getComponentState(props, slots, caller), ctx)
+     * ```
+     */
+    compileComponent(templatePath: string): CompiledTemplate;
+    /**
+     * Returns the isolated state for a given component
+     */
+    getComponentState(props: {
+        [key: string]: any;
+    }, slots: {
+        [key: string]: any;
+    }, caller: {
+        filename: string;
+        line: number;
+        col: number;
+    }): {
+        $slots: {
+            [key: string]: any;
+        };
+        $caller: {
+            filename: string;
+            line: number;
+            col: number;
+        };
+        $props: ComponentProps | Props;
+    };
+    /**
+     * Render a template with it's state.
+     *
+     * ```js
+     * template.render('welcome', { key: 'value' })
+     * ```
+     */
+    render<T extends Promise<string> | string>(template: string, state: any): T;
+    /**
+     * Render template from a raw string
+     *
+     * ```js
+     * template.renderRaw('Hello {{ username }}', { username: 'virk' })
+     * ```
+     */
+    renderRaw<T extends Promise<string> | string>(contents: string, state: any, templatePath?: string): T;
+    /**
+     * Escapes the value to be HTML safe. Only strings are escaped
+     * and rest all values will be returned as it is.
+     */
+    escape(input: any): string;
+    /**
+     * Raise an error
+     */
+    newError(errorMessage: string, filename: string, lineNumber: number, column: number): void;
+    /**
+     * Rethrows the runtime exception by re-constructing the error message
+     * to point back to the original filename
+     */
+    reThrow(error: any, filename: string, lineNumber: number): never;
+}
+export {};

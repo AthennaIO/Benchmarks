@@ -19,7 +19,7 @@ Easy way to create a `Stream` that is both `readable` and `writable`.
 This function is the basis for most of the synchronous streams in [event-stream](http://github.com/dominictarr/event-stream).
 
 ``` js
-var through = require('through')
+var through = require('@ljharb/through')
 
 through(function write(data) {
     this.queue(data) //data *must* not be null
@@ -33,7 +33,7 @@ Or, can also be used _without_ buffering on pause, use `this.emit('data', data)`
 and this.emit('end')
 
 ``` js
-var through = require('through')
+var through = require('@ljharb/through')
 
 through(function write(data) {
     this.emit('data', data)
@@ -55,7 +55,7 @@ and readable side of the stream has ended.
 If that is not desired, set `autoDestroy=false`.
 
 ``` js
-var through = require('through')
+var through = require('@ljharb/through')
 
 //like this
 var ts = through(write, end, {autoDestroy: false})
@@ -63,10 +63,6 @@ var ts = through(write, end, {autoDestroy: false})
 var ts = through(write, end)
 ts.autoDestroy = false
 ```
-
-## License
-
-MIT / Apache2
 
 [package-url]: https://npmjs.org/package/@ljharb/through
 [npm-version-svg]: https://versionbadg.es/ljharb/through.svg
