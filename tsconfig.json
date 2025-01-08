@@ -27,6 +27,6 @@
       "#framework/*": ["./framework/*.ts"]
     }
   },
-  "include": ["./**/*"],
+  "include": ["./**/*", "framework/athenna/node_modules/bin"],
   "exclude": ["build", "node_modules"]
 }
